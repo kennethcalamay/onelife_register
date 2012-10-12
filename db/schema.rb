@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012132333) do
+ActiveRecord::Schema.define(:version => 20121012143012) do
 
   create_table "committees", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(:version => 20121012132333) do
   add_index "participants", ["email"], :name => "index_participants_on_email", :unique => true
   add_index "participants", ["reset_password_token"], :name => "index_participants_on_reset_password_token", :unique => true
 
+  create_table "referrers", :force => true do |t|
+    t.string   "source"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "talents", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -72,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20121012132333) do
     t.string   "nickname"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "referrer"
   end
 
   add_index "volunteers", ["email"], :name => "index_volunteers_on_email", :unique => true
