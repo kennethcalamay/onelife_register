@@ -1,0 +1,21 @@
+.hero-unit
+  div
+    h1 style="text-align: center;" Welcome to the Register!
+    p style="text-align: center;"
+      'Use this web app to do this and do that etc etc etc.
+.row
+  .span6
+    .well
+      div
+        h1 style="text-align: center;" PARTICIPANT
+        p style="text-align: center;"
+          'As a participant, blah blah blah
+      = link_to "Register as a Participant!", new_participant_registration_path, :class => "btn btn-primary btn-large join"
+  .span6
+    .well
+      div
+        h1 style="text-align: center;"
+          'VOLUNTEER
+        p style="text-align: center;"
+          'As a volunteer, blah blah blah
+      = link_to "Register as a Volunteer!", new_volunteer_registration_path, :class => "btn btn-success btn-large join"
