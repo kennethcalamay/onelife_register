@@ -1,4 +1,4 @@
-class Volunteer < ActiveRecord::Base
+class Participant < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -6,8 +6,8 @@ class Volunteer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :middlename, :lastname
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :facilitator_id
   # attr_accessible :title, :body
   
-  has_many :handles, class_name: Participant.name, foreign_key: 'facilitator_id'
+  belongs_to :facilitator, :class_name => :Volunteer
 end
