@@ -44,3 +44,5 @@ gem "database_cleaner", :group => [:test]
 gem "devise"
 gem "slim"
 gem "slim-rails"
+
+gem 'awesome_nested_fields'
