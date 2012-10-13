@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012143012) do
+ActiveRecord::Schema.define(:version => 20121013024014) do
 
   create_table "committees", :force => true do |t|
     t.string   "name"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20121012143012) do
   end
 
   create_table "volunteers", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -76,9 +76,18 @@ ActiveRecord::Schema.define(:version => 20121012143012) do
     t.string   "middlename"
     t.string   "lastname"
     t.string   "nickname"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "referrer"
+    t.string   "gender"
+    t.date     "birthdate"
+    t.boolean  "part_of_a_dgroup"
+    t.integer  "dgroup_leader_id"
+    t.boolean  "leads_a_dgroup",         :default => false
+    t.string   "address"
+    t.string   "hobby"
+    t.string   "most_important_thing"
+    t.boolean  "onelife_volunteer",      :default => true
   end
 
   add_index "volunteers", ["email"], :name => "index_volunteers_on_email", :unique => true
