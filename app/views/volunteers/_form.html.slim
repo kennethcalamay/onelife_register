@@ -1,0 +1,99 @@
+.row
+  .span6
+    = onelife_custom_input(:firstname,  'First name',  :text, f)
+    = onelife_custom_input(:middlename, 'Middle name', :text, f)
+    = onelife_custom_input(:lastname,   'Last name',   :text, f)
+    = onelife_custom_input(:nickname,   'Nickname',    :text, f)
+    = onelife_custom_input(:email,      'Email',       :email, f)
+    = onelife_custom_input(:birthdate,  'Birth date',  :text, f, \
+      {type:'date', class: 'span4 date', placeholder: "MM/DD/YY"})
+    = onelife_custom_input(:password,   'Password',    :password, f)
+    = onelife_custom_input(:password_confirmation, 'Password Confirmation', :password, f)
+  .span6
+    .control-group
+      = f.label :contact_numbers, class: 'control-label'
+      .controls
+        .items
+          = f.nested_fields_for :contact_numbers do |cn|
+            fieldset.item.form-inline
+              = cn.select :provider, ["Globe", "Smart", "Sun"], {}, class: 'input-small'
+              '&nbsp;
+              = cn.text_field :number, class: 'input-small'
+              '&nbsp;
+              = link_to 'Remove', '#', class: 'remove'
+              = cn.hidden_field :id
+              = cn.hidden_field :_destroy
+        = link_to "Add number", '#', class: 'control-label add', style: 'text-align: left;'
+    .control-group
+      = f.label :gender, class: 'control-label'
+      .controls
+        label.radio.inline
+          = f.radio_button :gender, :male
+          | Male
+        label.radio.inline
+          = f.radio_button :gender, :female
+          | Female
+    .control-group
+      = label_tag :age,'Age', class: 'control-label'
+      .controls
+        = number_field_tag :age, nil, class: "span4 uneditable-input", placeholder:"Please set your birthdate", disabled: 'disabled'
+    .control-group
+      = f.label :part_of_a_dgroup, 'Part of a DGroup?', class: 'control-label'
+      .controls
+        label.radio.inline
+          = f.radio_button :part_of_a_dgroup, true
+          | Yes
+        label.radio.inline
+          = f.radio_button :part_of_a_dgroup, false
+          | No
+    .control-group.dgroup-field
+      = f.label :dgroup_leader_id, 'DGroup leader',  class: 'control-label'
+      .controls
+        = f.select :dgroup_leader_id, Volunteer.dgroup_leader_options, {}, class: 'span4'
+    .control-group.dgroup-field
+      = f.label :leads_a_dgroup, 'Leads own DGroup?', class: 'control-label'
+      .controls
+        label.radio.inline
+          = f.radio_button :leads_a_dgroup, true
+          | Yes
+        label.radio.inline
+          = f.radio_button :leads_a_dgroup, false
+          | No
+  .span12
+    .control-group
+      = f.label :address, class: 'control-label'
+      .controls
+        = f.text_field :address, class: 'span10'
+    .control-group
+      = label_tag :committee, :Committee, class: 'control-label'
+      .controls
+        = select_tag :committee, options_for_select(Committee.all.map{ |c| [c.name, c.id] }), class: 'span4'
+    .control-group
+      = f.label :referrer_id, "How did you come to know about 1Life?", class: "control-label"
+      .controls
+        = f.select :referrer_id, Referrer.all.map{ |r| [r.source, r.id] }, { },  { class: 'span4' }
+    .control-group
+      = f.label :hobby, class: 'control-label'
+      .controls
+        = f.text_field :hobby, class: 'span4'
+    .control-group
+      = f.label :most_important_thing, 'What\'s the most important thing for you?', class: 'control-label'
+      .controls
+        = f.text_field :most_important_thing, class: 'span4'
+    .control-group
+      = label_tag :talents, 'Talents', class: 'control-label'
+      .controls
+        = select_tag :talents, options_for_select(Talent.all.map{ |c| [c.name, c.id] }), class: 'span4'
+    - if resource.persisted?
+      .control-group
+        = label_tag :handles, 'Students handled', class: 'control-label'
+        .controls
+          = select_tag :handles, options_for_select(Participant.all.map{ |p| [p.name, p.id] }), class: 'span4'
+    .control-group
+      .controls
+        button.btn.btn-success.btn-large
+          | Register
+        /!
+          | button class="btn btn-danger btn-large">
+          | Cancel
+          | </button

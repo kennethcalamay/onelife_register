@@ -10,4 +10,9 @@ class Participant < ActiveRecord::Base
   # attr_accessible :title, :body
   
   belongs_to :facilitator, :class_name => :Volunteer
+
+  def display_name
+    tmp = "#{lastname}, #{firstname}"
+    tmp << " " << middlename.first << "." if middlename
+  end
 end
